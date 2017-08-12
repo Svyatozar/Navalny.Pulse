@@ -1,5 +1,6 @@
 package bled.navalny.com;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -53,7 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void checkInputNumber() {
-        int check = phoneEditText.getText().length();
             if (phoneEditText.getText().length() == 18) {
                 numberLayout.setVisibility(View.GONE);
                 smsLayout.setVisibility(View.VISIBLE);
@@ -72,7 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void checkName() {
             if (nameEditText.getText().length() > 1) {
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("userName", nameEditText.toString());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.putExtra("userName", nameEditText.toString());
                 startActivity(intent);
             }
     }
