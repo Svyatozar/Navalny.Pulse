@@ -1,4 +1,4 @@
-package com.example.persick.navalnyandroid.fragment;
+package bled.navalny.com.fragment;
 
 
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.persick.navalnyandroid.R;
+import bled.navalny.com.R;
 
 /**
  * Created by persick on 12/08/2017.
