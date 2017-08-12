@@ -2,14 +2,10 @@ package bled.navalny.com.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.gms.maps.SupportMapFragment;
-
-import bled.navalny.com.R;
 
 /**
  * Created by persick on 12/08/2017.
@@ -22,10 +18,9 @@ public class MapFragment extends SupportMapFragment
         super.onCreate(savedInstanceState);
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_map, container, false);
-//    }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+    }
 }

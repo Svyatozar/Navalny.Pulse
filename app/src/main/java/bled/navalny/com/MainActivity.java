@@ -43,15 +43,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+		mapFragment = new MapFragment();
+		mapFragment.getMapAsync(this);
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-
-        mapFragment = new MapFragment();
-        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -59,10 +59,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+		LatLng sydney = new LatLng(55.709003, 37.655043);
+		mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in FBK"));
+		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14f));
     }
 
     private void setupTabIcons() {
@@ -73,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new ProfileFragment(), "ONE");
-        adapter.addFrag(new MapFragment(), "TWO");
-        adapter.addFrag(new NotificationsFragment(), "THREE");
+        adapter.addFrag(new ProfileFragment(), getString(R.string.profile));
+        adapter.addFrag(mapFragment, getString(R.string.map));
+        adapter.addFrag(new NotificationsFragment(), getString(R.string.events));
         viewPager.setAdapter(adapter);
     }
 
