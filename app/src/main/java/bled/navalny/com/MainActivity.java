@@ -1,5 +1,6 @@
 package bled.navalny.com;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private MapFragment mapFragment;
 
+    private ProfileFragment profileFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+
+        profileFragment = new ProfileFragment();
+
+        Intent intent = getIntent();
+        //profileFragment.userNameTextView.setText(intent.getStringExtra("userName"));
+
     }
 
     @Override
@@ -72,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new ProfileFragment(), getString(R.string.profile));
+        adapter.addFrag(profileFragment, getString(R.string.profile));
         adapter.addFrag(mapFragment, getString(R.string.map));
         adapter.addFrag(new NotificationsFragment(), getString(R.string.events));
         viewPager.setAdapter(adapter);

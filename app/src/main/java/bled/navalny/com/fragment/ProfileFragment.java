@@ -31,6 +31,8 @@ public class ProfileFragment extends Fragment {
     Switch permissionSwitch;
     @BindView(R.id.chooseTimeRadioGroup)
     RadioGroup chooseTimeRadioGroup;
+    @BindView(R.id.userNameTextView)
+    public TextView userNameTextView;
 
     public ProfileFragment() {
         // Required empty public constructor

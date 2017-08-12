@@ -1,93 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:animateLayoutChanges="true"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainRegisterLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <LinearLayout
         android:id="@+id/numberLayout"
-        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:visibility="visible">
 
         <TextView
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            android:textColor="@android:color/black"
-            android:text="@string/input_number"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/input_number"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
 
         <EditText
             android:id="@+id/phoneEditText"
-            android:inputType="phone"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:inputType="phone" />
 
         <android.support.v7.widget.AppCompatButton
-            android:layout_marginTop="@dimen/activity_half_margin"
-            android:textColor="@android:color/white"
-            android:text="@string/send_code"
-            android:backgroundTint="@color/colorPrimary"
+            android:id="@+id/sendNumberButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_half_margin"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Отправить номер"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/smsLayout"
-        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:visibility="gone">
 
         <TextView
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            android:textColor="@android:color/black"
-            android:text="8-916-534-66-66"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="8-916-534-66-66"
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
 
         <EditText
             android:id="@+id/smsCodeEditText"
-            android:inputType="number"
-            android:hint="Введите код из СМС"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:hint="Введите код из СМС"
+            android:inputType="number" />
 
         <android.support.v7.widget.AppCompatButton
-            android:layout_marginTop="@dimen/activity_half_margin"
-            android:textColor="@android:color/white"
-            android:text="Отправить"
-            android:backgroundTint="@color/colorPrimary"
+            android:id="@+id/sendCodeButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_half_margin"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Отправить"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nameLayout"
-        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/nameEditText"
-            android:imeOptions="actionDone"
-            android:inputType="number"
-            android:hint="Введите код из СМС"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_width="220dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:gravity="center"
+            android:hint="Введите имя"
+            android:imeOptions="actionDone" />
 
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/sendNameButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_half_margin"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Продолжить"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </FrameLayout>
