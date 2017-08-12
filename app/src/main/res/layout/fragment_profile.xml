@@ -16,7 +16,7 @@
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:src="@drawable/belucchi"
-            app:civ_border_color="@android:color/holo_blue_dark"
+            app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="4dp" />
 
         <LinearLayout
@@ -59,7 +59,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/phoneNumberEditText"
+        android:id="@+id/phoneNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -83,6 +83,7 @@
             android:weightSum="1">
 
             <Switch
+                android:id="@+id/permissionSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -98,6 +99,7 @@
         </LinearLayout>
 
         <RadioGroup
+            android:id="@+id/chooseTimeRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -122,6 +124,18 @@
 
         </RadioGroup>
     </LinearLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:textColor="@android:color/white"
+        android:text="Выйти"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
