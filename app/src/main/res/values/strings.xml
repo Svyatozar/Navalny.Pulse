@@ -5,4 +5,6 @@
     <string name="profile">Профиль</string>
     <string name="map">Карта</string>
     <string name="events">События</string>
+    <string name="input_number">Введите номер</string>
+    <string name="send_code">Отправить код</string>
 </resources>
