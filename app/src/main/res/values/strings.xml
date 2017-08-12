@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Pulse</string>
+    <string name="permission_to_send_coordinates">Разрешить приложению отправлять ваши координаты в фоновом режиме.</string>
+    <string name="smt">Мы храним последнюю координату только в течение 15 минут.</string>
     <string name="profile">Профиль</string>
     <string name="map">Карта</string>
     <string name="events">События</string>
