@@ -28,8 +28,8 @@ public interface BledService {
     Call<Void> refreshProfile();
 
     @GET("/me/profile.json")
-    Call<Profile> getProfile(@Header("Pulse-Auth-Token") String token);
+    Call<Profile> getProfile();
 
     @GET("/alerts.json")
-    Call<Profile> getAlerts(@Header("Pulse-Auth-Token") String token, @Query("lat") Float latitude, @Query("lon") Float longitude);
+    Call<Profile> getAlerts(@Query("lat") Float latitude, @Query("lon") Float longitude);
 }
