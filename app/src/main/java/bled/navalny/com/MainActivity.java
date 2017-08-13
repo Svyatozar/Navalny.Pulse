@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
 		Bundle bundle = new Bundle();
 		bundle.putString("NAME", intent.getStringExtra("userName"));
-		profileFragment.setArguments(bundle);
+		profileFragment.setArguments(bundle);*/
     }
 
     private void setupTabIcons() {

@@ -1,14 +1,187 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Notifications"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:layout_margin="@dimen/activity_half_margin"
+        android:divider="@color/colorPrimary"
+        android:showDividers="middle">
 
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/belucchi"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/notofocationNameTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Антон Зверев"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Бешеные краснодарские отряды путина в Москве!"
+                android:textSize="15sp"
+                android:paddingTop="@dimen/activity_half_margin"
+                android:paddingBottom="@dimen/activity_half_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сегодня, 15:32"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_half_margin"
+        android:divider="@color/colorPrimary"
+        android:showDividers="middle">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/belucchi"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/notofocationNameTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Диана"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Задерживают за прогулку в футболке Навальный 20!8"
+                android:textSize="15sp"
+                android:paddingTop="@dimen/activity_half_margin"
+                android:paddingBottom="@dimen/activity_half_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сегодня, 13:43"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_half_margin"
+        android:divider="@color/colorPrimary"
+        android:showDividers="middle">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/belucchi"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/notofocationNameTextView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Константин"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пытаются забрать в ОВД за раздачу листовок"
+                android:textSize="15sp"
+                android:paddingTop="@dimen/activity_half_margin"
+                android:paddingBottom="@dimen/activity_half_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сегодня, 10:52"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_half_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/belucchi"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/notofocationNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Любовь Петрова"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Гайцы заставляют снять наклейку с машины!"
+                android:textSize="15sp"
+                android:paddingTop="@dimen/activity_half_margin"
+                android:paddingBottom="@dimen/activity_half_margin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вчера, 23:05"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

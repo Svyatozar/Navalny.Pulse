@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import bled.navalny.com.R;
 import bled.navalny.com.RegisterActivity;
+import bled.navalny.com.helpers.SharedPreferenceHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -77,7 +78,9 @@ public class ProfileFragment extends Fragment
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		userNameTextView.setText(getArguments().getString("NAME"));
+		//userNameTextView.setText(getArguments().getString("NAME"));
+        userNameTextView.setText(SharedPreferenceHelper.getSharedPreferenceString(getContext(), "name", "no one"));
+        phoneNumberTextView.setText(SharedPreferenceHelper.getSharedPreferenceString(getContext(), "phone", "no phone"));
 	}
 
 	@Override

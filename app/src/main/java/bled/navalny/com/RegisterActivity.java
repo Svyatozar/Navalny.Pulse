@@ -79,8 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
             ApplicationWrapper.bledService.sendCode(new PhoneNumber(phoneEditText.getText().toString())).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "COOL", Toast.LENGTH_SHORT);
-                    toast.show();
+                    SharedPreferenceHelper.setSharedPreferenceString(getApplicationContext(), "phone", phoneEditText.getText().toString());
                     smsLayout.setVisibility(View.VISIBLE);
                     numberLayout.setVisibility(View.GONE);
                     phoneTextView.setText(phoneEditText.getText().toString());
@@ -106,8 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
                         this.onFailure(call, new NullPointerException());
                     } else {
                         SharedPreferenceHelper.setToken(response.body().token);
-                        Toast toast = Toast.makeText(getApplicationContext(), "COOL", Toast.LENGTH_SHORT);
-                        toast.show();
                         nameLayout.setVisibility(View.VISIBLE);
                         smsLayout.setVisibility(View.GONE);
                     }
@@ -130,11 +127,10 @@ public class RegisterActivity extends AppCompatActivity {
             ApplicationWrapper.bledService.refreshProfile(new Profile(phoneEditText.getText().toString().replaceAll("[^0-9]", ""), nameEditText.getText().toString())).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_SHORT);
-                    toast.show();
+                    SharedPreferenceHelper.setSharedPreferenceString(getApplicationContext(), "name", nameEditText.getText().toString());
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("userName", nameEditText.getText().toString());
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    //intent.putExtra("userName", nameEditText.getText().toString());
                     startActivity(intent);
                 }
 
