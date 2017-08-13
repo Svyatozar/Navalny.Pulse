@@ -1,5 +1,8 @@
 package bled.navalny.com.api;
 
+import java.util.List;
+
+import bled.navalny.com.model.Alert;
 import bled.navalny.com.model.PhoneNumber;
 import bled.navalny.com.model.Profile;
 import bled.navalny.com.model.RegistrationInfo;
@@ -31,5 +34,5 @@ public interface BledService {
     Call<Profile> getProfile();
 
     @GET("/api/alerts.json")
-    Call<Profile> getAlerts(@Query("lat") Float latitude, @Query("lon") Float longitude);
+    Call<List<Alert>> getAlerts(@Query("lat") Double latitude, @Query("lon") Double longitude);
 }

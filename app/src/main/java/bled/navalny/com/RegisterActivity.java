@@ -59,19 +59,25 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        ButterKnife.bind(this);
 
-        FormatWatcher formatWatcher = new MaskFormatWatcher(
-                MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER) // маска для серии и номера
-        );
-        formatWatcher.installOn(phoneEditText);
+		if (!SharedPreferenceHelper.getToken().isEmpty()) {
+			Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+			startActivity(intent);
+			finish();
+		} else {
+			setContentView(R.layout.activity_register);
+			ButterKnife.bind(this);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-        }
+			FormatWatcher formatWatcher = new MaskFormatWatcher(
+					MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER) // маска для серии и номера
+			);
+			formatWatcher.installOn(phoneEditText);
 
+			if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+			}
+		}
     }
 
     private void checkInputNumber() {

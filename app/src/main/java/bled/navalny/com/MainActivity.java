@@ -75,6 +75,22 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // make the device update its location
+        ApplicationWrapper.location.beginUpdates();
+    }
+
+    @Override
+    protected void onPause() {
+        // stop location updates (saves battery)
+        ApplicationWrapper.location.endUpdates();
+
+        super.onPause();
+    }
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();

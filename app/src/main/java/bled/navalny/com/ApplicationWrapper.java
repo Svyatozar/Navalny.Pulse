@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import bled.navalny.com.api.BledService;
 import bled.navalny.com.helpers.SharedPreferenceHelper;
+import im.delight.android.location.SimpleLocation;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,7 +23,8 @@ public class ApplicationWrapper extends Application {
     public static final String  BASE_URL = "http://navalny2018pulsepublicapi.azurewebsites.net";
 
     public static BledService bledService;
-    public static Context context;
+	public static SimpleLocation location;
+	public static Context context;
 
     @Override
     public void onCreate() {
@@ -52,5 +54,11 @@ public class ApplicationWrapper extends Application {
                 //.client(httpClient.build()) // network requests logging
                 .build();
         bledService = retrofit.create(BledService.class);
+
+		location = new SimpleLocation(context);
+		if (!location.hasLocationEnabled()) {
+			// ask the user to enable location access
+			SimpleLocation.openSettings(this);
+		}
     }
 }

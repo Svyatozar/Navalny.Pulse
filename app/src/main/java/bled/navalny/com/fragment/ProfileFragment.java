@@ -1,6 +1,7 @@
 package bled.navalny.com.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -63,6 +64,8 @@ public class ProfileFragment extends Fragment
 		exitButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				SharedPreferenceHelper.setToken("");
+
 				Intent intent = new Intent(getContext(), RegisterActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
