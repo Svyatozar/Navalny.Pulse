@@ -7,4 +7,9 @@ package bled.navalny.com.model;
 public class RegistrationInfo {
     public String phone;
     public String code;
+
+    public RegistrationInfo(String phone, String code) {
+        this.phone = phone;
+        this.code = code;
+    }
 }

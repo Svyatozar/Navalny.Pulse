@@ -18,18 +18,18 @@ import retrofit2.http.Query;
  */
 
 public interface BledService {
-    @POST("/auth/send_code.json")
+    @POST("/api/auth/send_code.json")
     Call<Void> sendCode(@Body PhoneNumber phoneNumber);
 
-    @POST("/auth/sign_in.json")
-    ResponseToken signIn(@Body RegistrationInfo registrationInfo);
+    @POST("/api/auth/sign_in.json")
+    Call<ResponseToken> signIn(@Body RegistrationInfo registrationInfo);
 
-    @POST("/me/profile.json")
-    Call<Void> refreshProfile();
+    @POST("/api/me/profile.json")
+    Call<Void> refreshProfile(@Body Profile profile);
 
-    @GET("/me/profile.json")
+    @GET("/api/me/profile.json")
     Call<Profile> getProfile();
 
-    @GET("/alerts.json")
+    @GET("/api/alerts.json")
     Call<Profile> getAlerts(@Query("lat") Float latitude, @Query("lon") Float longitude);
 }

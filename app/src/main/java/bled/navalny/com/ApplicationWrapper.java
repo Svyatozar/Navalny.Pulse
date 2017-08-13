@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApplicationWrapper extends Application {
-    public static final String  BASE_URL = "http://navalny2018pulsepublicapi.azurewebsites.net/api";
+    public static final String  BASE_URL = "http://navalny2018pulsepublicapi.azurewebsites.net";
 
     public static BledService bledService;
     public static Context context;
