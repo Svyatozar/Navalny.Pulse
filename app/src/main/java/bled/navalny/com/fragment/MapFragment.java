@@ -1,11 +1,14 @@
 package bled.navalny.com.fragment;
 
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
@@ -77,6 +80,17 @@ public class MapFragment extends Fragment
 			{
 				mMap = googleMap;
 				mMap.getUiSettings().setZoomGesturesEnabled(false);
+
+				if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+						== PackageManager.PERMISSION_GRANTED) {
+					mMap.setMyLocationEnabled(true);
+				} else {
+					Toast.makeText(getActivity(), "You have to accept to enjoy all app's services!", Toast.LENGTH_SHORT).show();
+					if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+							== PackageManager.PERMISSION_GRANTED) {
+						mMap.setMyLocationEnabled(true);
+					}
+				}
 
 				final LatLng sydney = new LatLng(55.709003, 37.655043);
 				mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14f));

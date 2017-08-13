@@ -3,6 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_half_margin">8dp</dimen>
-    <dimen name="pulse_size">150dp</dimen>
+    <dimen name="pulse_size">90dp</dimen>
 
 </resources>

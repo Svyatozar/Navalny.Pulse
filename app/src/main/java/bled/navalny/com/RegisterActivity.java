@@ -1,15 +1,20 @@
 package bled.navalny.com;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +56,12 @@ public class RegisterActivity extends AppCompatActivity {
                 MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER) // маска для серии и номера
         );
         formatWatcher.installOn(phoneEditText);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }
     }
 
     private void checkInputNumber() {
@@ -92,4 +103,25 @@ public class RegisterActivity extends AppCompatActivity {
                 break;
         }
     }
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+	{
+		switch (requestCode)
+		{
+			case 0:
+			{
+				if (grantResults.length > 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+				{
+					//DO SOMETHING
+				}
+				else
+				{
+					Toast.makeText(this, R.string.permissions_alert, Toast.LENGTH_SHORT).show();
+					finish();
+				}
+				return;
+			}
+		}
+	}
 }
