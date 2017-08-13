@@ -16,6 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import bled.navalny.com.api.BledService;
+import bled.navalny.com.model.PhoneNumber;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.mainRegisterLayout)
     FrameLayout mainRegisterLayout;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,8 @@ public class RegisterActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
         }
+
+        ApplicationWrapper.bledService.sendCode(new PhoneNumber(phoneEditText.getText().toString())).enqueue();
     }
 
     private void checkInputNumber() {

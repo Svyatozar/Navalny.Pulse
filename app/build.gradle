@@ -31,4 +31,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile "ru.tinkoff.decoro:decoro:1.1.1"
     compile 'pl.bclogic:pulsator4droid:1.0.3'
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 }
