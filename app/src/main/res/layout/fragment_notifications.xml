@@ -2,21 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:divider="@color/colorPrimary"
+    android:showDividers="middle">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_half_margin"
-        android:divider="@color/colorPrimary"
-        android:showDividers="middle">
+        android:layout_margin="@dimen/activity_half_margin">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/belucchi"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            app:civ_border_color="@android:color/holo_red_dark"
+            app:civ_border_width="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,15 +56,15 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_half_margin"
-        android:divider="@color/colorPrimary"
-        android:showDividers="middle">
+        android:layout_margin="@dimen/activity_half_margin">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/belucchi"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            app:civ_border_color="@android:color/holo_red_dark"
+            app:civ_border_width="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,15 +101,15 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_half_margin"
-        android:divider="@color/colorPrimary"
-        android:showDividers="middle">
+        android:layout_margin="@dimen/activity_half_margin">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/belucchi"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            app:civ_border_color="@android:color/holo_red_dark"
+            app:civ_border_width="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,7 +152,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/belucchi"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            app:civ_border_color="@android:color/holo_red_dark"
+            app:civ_border_width="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

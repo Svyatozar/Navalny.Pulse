@@ -86,7 +86,8 @@
                 android:id="@+id/permissionSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"/>
+                android:layout_gravity="left"
+                android:checked="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
