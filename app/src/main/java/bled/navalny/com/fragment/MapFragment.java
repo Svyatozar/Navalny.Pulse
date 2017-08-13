@@ -2,7 +2,7 @@ package bled.navalny.com.fragment;
 
 
 import android.Manifest;
-import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -28,12 +28,18 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
 import bled.navalny.com.ApplicationWrapper;
 import bled.navalny.com.R;
+import bled.navalny.com.model.Alert;
 import bled.navalny.com.views.AlertView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by persick on 12/08/2017.
@@ -41,16 +47,19 @@ import butterknife.Unbinder;
 
 public class MapFragment extends Fragment
 {
-	@BindView(R.id.pulsator)
-	AlertView pulsator;
 	@BindView(R.id.mapView)
 	MapView mMapView;
 	@BindView(R.id.alertButton)
 	AppCompatButton alertButton;
 
 	Unbinder unbinder;
+	@BindView(R.id.rootLayout)
+	FrameLayout rootLayout;
+	@BindView(R.id.alertsContainer)
+	FrameLayout alertsContainer;
 
 	private GoogleMap mMap;
+	private List<Alert> alerts;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -86,12 +95,16 @@ public class MapFragment extends Fragment
 				mMap.getUiSettings().setZoomGesturesEnabled(false);
 
 				if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-						== PackageManager.PERMISSION_GRANTED) {
+						== PackageManager.PERMISSION_GRANTED)
+				{
 					mMap.setMyLocationEnabled(true);
-				} else {
+				}
+				else
+				{
 					Toast.makeText(getActivity(), "You have to accept to enjoy all app's services!", Toast.LENGTH_SHORT).show();
 					if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-							== PackageManager.PERMISSION_GRANTED) {
+							== PackageManager.PERMISSION_GRANTED)
+					{
 						mMap.setMyLocationEnabled(true);
 					}
 				}
@@ -104,32 +117,9 @@ public class MapFragment extends Fragment
 					@Override
 					public void onCameraMove()
 					{
-						Point position = mMap.getProjection().toScreenLocation(sydney);
-
-						FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) pulsator.getLayoutParams();
-						int pulseSize = getResources().getDimensionPixelSize(R.dimen.pulse_size);
-						params.setMargins(position.x - pulseSize/2, position.y - pulseSize/2, 0, 0);
-						pulsator.setLayoutParams(params);
+						placeAlerts();
 					}
 				});
-
-				if (mMapView.getViewTreeObserver().isAlive()) {
-					mMapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-						@Override
-						public void onGlobalLayout() {
-							mMapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-							Point position = mMap.getProjection().toScreenLocation(sydney);
-
-							FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) pulsator.getLayoutParams();
-							int pulseSize = getResources().getDimensionPixelSize(R.dimen.pulse_size);
-							params.setMargins(position.x - pulseSize/2, position.y - pulseSize/2, 0, 0);
-							pulsator.setLayoutParams(params);
-
-							pulsator.setVisibility(View.VISIBLE);
-							pulsator.start();
-						}
-					});
-				}
 			}
 		});
 
@@ -139,36 +129,92 @@ public class MapFragment extends Fragment
 			public void onClick(View v)
 			{
 				ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.alert_strings));
-				new AlertDialog.Builder(getActivity()).setAdapter(adapter, new DialogInterface.OnClickListener() {
+				new AlertDialog.Builder(getActivity()).setAdapter(adapter, new DialogInterface.OnClickListener()
+				{
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
+					public void onClick(DialogInterface dialog, int which)
+					{
 
 					}
 				}).show();
 			}
 		});
 
-		pulsator.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				Toast.makeText(getContext(), "CLICK", Toast.LENGTH_SHORT).show();
-			}
-		});
+//		pulsator.setOnClickListener(new View.OnClickListener()
+//		{
+//			@Override
+//			public void onClick(View v)
+//			{
+//				Toast.makeText(getContext(), "CLICK", Toast.LENGTH_SHORT).show();
+//			}
+//		});
+
+		startAlertsTracking();
 	}
 
-	public void startAlertsTrecking() {
-		Handler.Callback callback = new Handler.Callback() {
+	public void startAlertsTracking()
+	{
+		Handler.Callback callback = new Handler.Callback()
+		{
 			@Override
-			public boolean handleMessage(Message msg) {
-				//ApplicationWrapper.bledService.getAlerts()
+			public boolean handleMessage(Message msg)
+			{
+				final Handler.Callback delayedCallback = this;
+
+				ApplicationWrapper.bledService.getAlerts(ApplicationWrapper.location.getLatitude(), ApplicationWrapper.location.getLongitude()).enqueue(new Callback<List<Alert>>()
+				{
+					@Override
+					public void onResponse(Call<List<Alert>> call, Response<List<Alert>> response)
+					{
+						alerts = response.body();
+						updateAlerts();
+						new Handler(delayedCallback).sendEmptyMessageDelayed(0, 3000);
+					}
+
+					@Override
+					public void onFailure(Call<List<Alert>> call, Throwable t)
+					{
+						Toast.makeText(getContext(), "Не удалось загрузить список событий", Toast.LENGTH_SHORT).show();
+					}
+				});
 
 				return true;
 			}
 		};
 
 		new Handler(callback).sendEmptyMessage(0);
+	}
+
+	private void updateAlerts() {
+		alertsContainer.removeAllViews();
+		LayoutInflater inflater = (LayoutInflater) ApplicationWrapper.context.getSystemService(
+				Context.LAYOUT_INFLATER_SERVICE);
+		for (Alert alert : alerts) {
+			AlertView alertView = (AlertView) inflater.inflate(R.layout.alert_item, alertsContainer, false);
+			alertView.setTag(alert);
+			alertView.setVisibility(View.GONE);
+			alertView.start();
+
+			alertsContainer.addView(alertView);
+		}
+
+		placeAlerts();
+	}
+
+	private void placeAlerts() {
+		for (int i = 0; i < alertsContainer.getChildCount(); i++) {
+			AlertView alertView = (AlertView) alertsContainer.getChildAt(i);
+			Alert alert = (Alert) alertView.getTag();
+
+			Point position = mMap.getProjection().toScreenLocation(new LatLng(alert.lat, alert.lon));
+
+			FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) alertView.getLayoutParams();
+			int pulseSize = getResources().getDimensionPixelSize(R.dimen.pulse_size);
+			params.setMargins(position.x - pulseSize / 2, position.y - pulseSize / 2, 0, 0);
+			alertView.setLayoutParams(params);
+
+			alertView.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override

@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/rootLayout"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
@@ -10,18 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <bled.navalny.com.views.AlertView
-        android:id="@+id/pulsator"
-        android:layout_width="@dimen/pulse_size"
-        android:layout_height="@dimen/pulse_size"
-        android:visibility="gone"
-        app:pulse_count="4"
-        app:pulse_duration="7000"
-        app:pulse_repeat="0"
-        app:pulse_color="@color/colorAccent"
-        app:pulse_startFromScratch="false"
-        app:pulse_interpolator="Linear">
-    </bled.navalny.com.views.AlertView>
+    <FrameLayout
+        android:id="@+id/alertsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/alertButton"

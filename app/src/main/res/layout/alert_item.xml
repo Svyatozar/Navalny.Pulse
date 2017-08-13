@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bled.navalny.com.views.AlertView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/pulse_size"
+    android:layout_height="@dimen/pulse_size"
+    android:visibility="gone"
+    app:pulse_count="4"
+    app:pulse_duration="7000"
+    app:pulse_repeat="0"
+    app:pulse_color="@color/colorAccent"
+    app:pulse_startFromScratch="false"
+    app:pulse_interpolator="Linear">
+</bled.navalny.com.views.AlertView>
