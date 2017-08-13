@@ -1,14 +1,36 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Map"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:clickable="false"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <bled.navalny.com.views.AlertView
+        android:id="@+id/pulsator"
+        android:layout_width="@dimen/pulse_size"
+        android:layout_height="@dimen/pulse_size"
+        android:visibility="gone"
+        app:pulse_count="4"
+        app:pulse_duration="7000"
+        app:pulse_repeat="0"
+        app:pulse_color="@color/colorAccent"
+        app:pulse_startFromScratch="false"
+        app:pulse_interpolator="Linear">
+    </bled.navalny.com.views.AlertView>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/alertButton"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textColor="@android:color/white"
+        android:text="Помогите!"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

@@ -7,4 +7,9 @@
     <string name="events">События</string>
     <string name="input_number">Введите номер</string>
     <string name="send_code">Отправить код</string>
+
+    <string-array name="alert_strings">
+        <item>Тревога</item>
+        <item>Сообщение</item>
+    </string-array>
 </resources>

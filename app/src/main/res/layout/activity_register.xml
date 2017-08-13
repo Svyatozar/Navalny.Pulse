@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_half_margin"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Отправить номер"
+            android:text="Отправить"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
@@ -58,6 +58,7 @@
         <EditText
             android:id="@+id/smsCodeEditText"
             android:layout_width="220dp"
+            android:maxLength="4"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:gravity="center"

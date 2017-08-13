@@ -55,16 +55,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void checkInputNumber() {
             if (phoneEditText.getText().length() == 18) {
-                numberLayout.setVisibility(View.GONE);
                 smsLayout.setVisibility(View.VISIBLE);
+                numberLayout.setVisibility(View.GONE);
             }
             //TODO else show message
     }
 
     private void checkInputCode() {
             if (smsCodeEditText.getText().length() == 4) {
-                smsLayout.setVisibility(View.GONE);
                 nameLayout.setVisibility(View.VISIBLE);
+                smsLayout.setVisibility(View.GONE);
             }
             //TODO else show message
     }
@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (nameEditText.getText().length() > 1) {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //intent.putExtra("userName", nameEditText.toString());
+                intent.putExtra("userName", nameEditText.getText().toString());
                 startActivity(intent);
             }
     }

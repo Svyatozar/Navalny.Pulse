@@ -25,7 +25,7 @@ import bled.navalny.com.fragment.NotificationsFragment;
 import bled.navalny.com.fragment.ProfileFragment;
 
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
+public class MainActivity extends AppCompatActivity
 {
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             R.drawable.ic_notifications_active_white_24dp
     };
 
-    private GoogleMap mMap;
     private MapFragment mapFragment;
 
     private ProfileFragment profileFragment;
@@ -47,30 +46,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
 		mapFragment = new MapFragment();
-		mapFragment.getMapAsync(this);
+		profileFragment = new ProfileFragment();
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+		viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
 
-        profileFragment = new ProfileFragment();
-
         Intent intent = getIntent();
-        //profileFragment.userNameTextView.setText(intent.getStringExtra("userName"));
-
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
-        mMap = googleMap;
-
-		LatLng sydney = new LatLng(55.709003, 37.655043);
-		mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in FBK"));
-		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14f));
+		Bundle bundle = new Bundle();
+		bundle.putString("NAME", intent.getStringExtra("userName"));
+		profileFragment.setArguments(bundle);
     }
 
     private void setupTabIcons() {

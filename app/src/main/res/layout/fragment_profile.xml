@@ -80,15 +80,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:orientation="horizontal">
 
             <Switch
                 android:id="@+id/permissionSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="0.06" />
+                android:layout_gravity="left"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,6 +130,7 @@
         android:layout_height="match_parent" />
 
     <android.support.v7.widget.AppCompatButton
+        android:id="@+id/exitButton"
         android:textColor="@android:color/white"
         android:text="Выйти"
         android:backgroundTint="@color/colorPrimary"
