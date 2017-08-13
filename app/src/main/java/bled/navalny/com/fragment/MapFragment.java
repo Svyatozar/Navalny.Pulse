@@ -2,10 +2,13 @@ package bled.navalny.com.fragment;
 
 
 import android.Manifest;
+import android.app.Application;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -25,6 +28,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import bled.navalny.com.ApplicationWrapper;
 import bled.navalny.com.R;
 import bled.navalny.com.views.AlertView;
 import butterknife.BindView;
@@ -93,7 +97,7 @@ public class MapFragment extends Fragment
 				}
 
 				final LatLng sydney = new LatLng(55.709003, 37.655043);
-				mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14f));
+				mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15f));
 
 				mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener()
 				{
@@ -152,6 +156,19 @@ public class MapFragment extends Fragment
 				Toast.makeText(getContext(), "CLICK", Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
+
+	public void startAlertsTrecking() {
+		Handler.Callback callback = new Handler.Callback() {
+			@Override
+			public boolean handleMessage(Message msg) {
+				//ApplicationWrapper.bledService.getAlerts()
+
+				return true;
+			}
+		};
+
+		new Handler(callback).sendEmptyMessage(0);
 	}
 
 	@Override

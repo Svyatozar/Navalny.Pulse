@@ -1,11 +1,9 @@
 package bled.navalny.com;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -66,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
         }
 
-        ApplicationWrapper.bledService.sendCode(new PhoneNumber(phoneEditText.getText().toString())).enqueue();
+        //ApplicationWrapper.bledService.sendCode(new PhoneNumber(phoneEditText.getText().toString())).enqueue();
     }
 
     private void checkInputNumber() {
@@ -116,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
 		{
 			case 0:
 			{
-				if (grantResults.length > 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
 				{
 					//DO SOMETHING
 				}
