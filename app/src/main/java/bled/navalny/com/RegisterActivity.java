@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import bled.navalny.com.helpers.SharedPreferenceHelper;
 import bled.navalny.com.model.PhoneNumber;
+import bled.navalny.com.model.Profile;
 import bled.navalny.com.model.RegistrationInfo;
 import bled.navalny.com.model.ResponseToken;
 import butterknife.BindView;
@@ -126,10 +127,23 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void checkName() {
         if (nameEditText.getText().length() > 1) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("userName", nameEditText.getText().toString());
-            startActivity(intent);
+            ApplicationWrapper.bledService.refreshProfile(new Profile(phoneEditText.getText().toString().replaceAll("[^0-9]", ""), nameEditText.getText().toString())).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("userName", nameEditText.getText().toString());
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Ошибка!", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
         }
     }
 

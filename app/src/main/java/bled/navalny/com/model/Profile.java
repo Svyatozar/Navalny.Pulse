@@ -9,4 +9,9 @@ public class Profile {
     public String name;
     public int age;
     public int gender;
+
+    public Profile(String phone, String name) {
+        this.phone = phone;
+        this.name = name;
+    }
 }
