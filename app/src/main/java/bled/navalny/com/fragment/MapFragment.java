@@ -2,6 +2,7 @@ package bled.navalny.com.fragment;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -128,15 +129,38 @@ public class MapFragment extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.alert_strings));
-				new AlertDialog.Builder(getActivity()).setAdapter(adapter, new DialogInterface.OnClickListener()
+//				ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.alert_strings));
+//				new AlertDialog.Builder(getActivity()).setAdapter(adapter, new DialogInterface.OnClickListener()
+//				{
+//					@Override
+//					public void onClick(DialogInterface dialog, int which)
+//					{
+//
+//					}
+//				}).show();
+
+				final ProgressDialog dialog = ProgressDialog.show(getContext(), "Ждите", "Помощь уже в пути");
+				Alert testAlert = new Alert();
+				testAlert.comment = "На хакатон напали краснодарские бабки!";
+				testAlert.lat = 55.709003;
+				testAlert.lon = 37.655043;
+
+				ApplicationWrapper.bledService.addAlert(testAlert).enqueue(new Callback<Void>()
 				{
 					@Override
-					public void onClick(DialogInterface dialog, int which)
+					public void onResponse(Call<Void> call, Response<Void> response)
 					{
-
+						mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(55.709003, 37.655043), 15f));
+						dialog.dismiss();
+						Toast.makeText(getContext(), "Готово", Toast.LENGTH_SHORT).show();
 					}
-				}).show();
+
+					@Override
+					public void onFailure(Call<Void> call, Throwable t)
+					{
+						Toast.makeText(getContext(), "Ошибка", Toast.LENGTH_SHORT).show();
+					}
+				});
 			}
 		});
 
@@ -194,6 +218,14 @@ public class MapFragment extends Fragment
 			alertView.setTag(alert);
 			alertView.setVisibility(View.GONE);
 			alertView.start();
+
+			alertView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Alert alert = (Alert) v.getTag();
+					new AlertDialog.Builder(getContext()).setMessage(alert.comment).show();
+				}
+			});
 
 			alertsContainer.addView(alertView);
 		}

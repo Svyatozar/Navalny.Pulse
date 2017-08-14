@@ -30,6 +30,9 @@ public interface BledService {
     @POST("/api/me/profile.json")
     Call<Void> refreshProfile(@Body Profile profile);
 
+	@POST("/api/alerts.json")
+	Call<Void> addAlert(@Body Alert alert);
+
     @GET("/api/me/profile.json")
     Call<Profile> getProfile();
 
